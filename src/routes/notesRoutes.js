@@ -1,20 +1,18 @@
 import { Router } from 'express';
-import { Student } from '../models/student.js';
+import {
+  createNote,
+  deleteNote,
+  getAllNotes,
+  getNoteById,
+  updateNote,
+} from '../controllers/notesController';
 
 const router = Router();
 
-router.get('/students', async (req, res) => {
-  const students = await Student.find();
-  res.status(200).json(students);
-});
-
-router.get('/students/:studentId', async (req, res) => {
-  const { studentId } = req.params;
-  const student = await Student.findById(studentId);
-  if (!student) {
-    return res.status(404).json({ message: 'Student not found' });
-  }
-  res.status(200).json(student);
-});
+router.get('/notes', getAllNotes);
+router.get('/notes/:noteId', getNoteById);
+router.post('/notes', createNote);
+router.delete('/notes/:noteId', deleteNote);
+router.patch('/notes/:noteId', updateNote);
 
 export default router;

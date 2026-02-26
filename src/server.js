@@ -14,22 +14,8 @@ app.use(logger);
 app.use(cors());
 app.use(express.json());
 
-app.use(notesRoutes);
-
 //^ ROUTES
-app.get('/notes', (req, res) => {
-  res.status(200).json({
-    message: 'Retrieved all notes',
-  });
-});
-
-app.get('/notes/:noteId', (req, res) => {
-  const { noteId } = req.params;
-
-  res.status(200).json({
-    message: `Retrieved note with ID: ${noteId}`,
-  });
-});
+app.use(notesRoutes);
 
 //^ MIDDLEWARE FOR PAGE NOT FOUND AND ERROR
 app.use(notFoundHandler);
