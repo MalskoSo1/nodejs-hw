@@ -83,7 +83,7 @@ export const updateNote = async (req, res, next) => {
   try {
     const { noteId } = req.params;
 
-    const note = await await Note.findOneAndUpdate(
+    const note = await Note.findOneAndUpdate(
       {
         _id: noteId,
         userId: req.user._id,
